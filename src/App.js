@@ -1,9 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
 import useHttp from "./hooks/use-http";
-import * as url from "url";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -18,7 +17,9 @@ function App() {
       }
       setTasks(loadedTasks);
     };
-    fetchTasks({url:'https://react-http-bfdb8-default-rtdb.firebaseio.com/tasks.json'},transformedTasks);
+
+    fetchTasks({url:'https://react-http-bfdb8-default-rtdb.firebaseio.com/tasks.json'},
+        transformedTasks);
   }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
